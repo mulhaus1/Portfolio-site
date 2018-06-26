@@ -2342,7 +2342,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-area {
-  background-color: #f9f9ff;
+  background-color: #fff;
 }
 
 .single-project a {
@@ -2396,6 +2396,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   margin-right: 12px;
   font-size: 20px;
+}
+
+.contact-area {
+  background-color: #f9f9ff;
 }
 
 .single-contact-info {
