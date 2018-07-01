@@ -1,0 +1,15 @@
+runtime: php55
+threadsafe: yes
+api_version: 1
+
+handlers:
+- url: /
+  static_files: www/index.html
+  upload: www/index.html
+
+- url: /(.*)
+  static_files: www/\1
+  upload: www/(.*)
+  
+- url : /mail.php
+script: mail.php
