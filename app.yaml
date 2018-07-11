@@ -6,10 +6,13 @@ handlers:
 - url: /
   static_files: www/index.html
   upload: www/index.html
+  
+- url : /mail.php*
+  script: mail.php
+  
+- url : /mail2.php*
+  script: mail2.php
 
 - url: /(.*)
   static_files: www/\1
   upload: www/(.*)
-  
-- url : /mail.php
-script: mail.php
