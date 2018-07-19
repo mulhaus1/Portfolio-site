@@ -16,9 +16,11 @@
 	    $message->setSubject($subject);
 	    $message->setTextBody($text);
 	    $message->send();
-	    echo 'Mail Sent';
+	    http_response_code(200);
+        echo "Thank You! Your message has been sent.";
 	} catch (Exception $e) {
-    	echo 'Caught exception: ',  $e->getMessage(), "\n";
+    	http_response_code(500);
+        echo "Oops! Something went wrong and we couldn't send your message.";
 	}
 
 ?>
