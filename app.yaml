@@ -9,8 +9,8 @@ handlers:
   secure: always
   redirect_http_response_code: 301
   
-- url : /mail2.php*
-  script: mail2.php
+- url : /mail.php*
+  script: mail.php
   secure: always
   redirect_http_response_code: 301
 
