@@ -1,31 +1,26 @@
 <?php
-    $to = 'michael.mulhausen@gmail.com';
-    $firstname = $_POST["fname"];
-    $email= $_POST["email"];
-    $text= $_POST["message"];
-    $phone= $_POST["phone"];
-    
-
-
-    $headers = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= "From: " . $email . "\r\n"; // Sender's E-mail
-    $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
-    $message ='<table style="width:100%">
-        <tr>
-            <td>'.$firstname.'  '.$laststname.'</td>
-        </tr>
-        <tr><td>Email: '.$email.'</td></tr>
-        <tr><td>phone: '.$phone.'</td></tr>
-        <tr><td>Text: '.$text.'</td></tr>
-        
-    </table>';
-
-    if (@mail($to, $email, $message, $headers))
-    {
-        echo 'The message has been sent.';
-    }else{
-        echo 'failed';
-    }
+	use google\appengine\api\mail\Message;
+	use google\appengine\api\app_identity\AppIdentityService;
+	
+	try {
+		$appid = AppIdentityService::getApplicationId();
+		
+		$firstname = $_POST["name"];
+    	$email= $_POST["email"];
+    	$text= $_POST["message"];
+   	 	$subject = $_POST["subject"];
+		
+	    $message = new Message();
+	    $message->setSender('noreply@' . $appid . '.appspotmail.com');
+	    $message->addTo('michael.mulhausen@gmail.com');
+	    $message->setSubject($subject);
+	    $message->setTextBody($text);
+	    $message->send();
+	    http_response_code(200);
+        echo "Thank You! Your message has been sent.";
+	} catch (Exception $e) {
+    	http_response_code(500);
+        echo "Oops! Something went wrong and we couldn't send your message.";
+	}
 
 ?>
